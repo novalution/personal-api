@@ -10,9 +10,9 @@ async function getVideo(judul) {
   await page.goto('http://149.56.24.226/');
   
   await page.type('body > header > nav.top.navbar.navbar-inverse.hidden-xs > div > form > div > div > span.typeahead__query > input', `${judul}`);
-  await page.click('body > header > nav.top.navbar.navbar-inverse.hidden-xs > div > form > div > div > span.typeahead__button > button', { delay: 300 });
-  await page.waitForSelector('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2 > a');
-  await page.click('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2 > a');
+  await page.click('body > header > nav.top.navbar.navbar-inverse.hidden-xs > div > form > div > div > span.typeahead__button > button', { delay: 500 });
+  await page.waitForSelector('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2 > a', { delay: 500 });
+  await page.click('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2 > a', { delay: 500 });
 
   await page.waitForSelector('#download-movie > a.btn.btn-success');
   let mp4direct = await page.$eval('#download-movie > a.btn.btn-success', (element) => {
