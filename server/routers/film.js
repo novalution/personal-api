@@ -1,7 +1,7 @@
 const film = require('express').Router();
 const puppeteer = require('puppeteer');
 
-async function getVideo(judul) {
+async function pilem(judul) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto('http://149.56.24.226/');
@@ -23,7 +23,7 @@ async function getVideo(judul) {
 }
 film.get('/', async (req, res) => {
     var judul = req.query.judul;
-    const gets = await getVideo(judul);
+    const gets = await pilem(judul);
     res.json(gets)
 });
 module.exports = film;
