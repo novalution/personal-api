@@ -11,7 +11,7 @@ var twimg = require('./server/routers/twimg');
 var film = require('./server/routers/film');
 
 var app = express();
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
 app.use(express.static('client'));
