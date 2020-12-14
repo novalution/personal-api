@@ -18,7 +18,7 @@ async function pilem(judul) {
   let image = await page.$eval("#movie-detail > div > div.col-xs-2.content-poster > figure > img", (element) => {
     return element.getAttribute("src");
   });
-  await browser.close();
+  browser.close();
   return { mp4direct, image}
 }
 film.get('/', async (req, res) => {
