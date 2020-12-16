@@ -19,13 +19,13 @@ async function filem2(judul) {
     await page.click('#post-48460 > article > a > div > figure', { delay: 300 });
        
     await page.waitForSelector('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > section > ul > li:nth-child(1) > div > a', {delay: 300});
-    let mp4direct = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > section > ul > li:nth-child(1) > div > a', (element) => {
+    let video = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > section > ul > li:nth-child(1) > div > a', (element) => {
         return element.getAttribute("href");
     });
-	let nameInfo = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > article > header > div > a:nth-child(1) > h1', el => el.innerText);
-//	let textInfo = await page.$eval('#post-header > a:tittle', el => el.innerText);
+	let title = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > article > header > div > a:nth-child(1) > h1', el => el.innerText);
+	let sinopsis = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > article > header > div > div.Description > p:nth-child(2)', el => el.innerText);
 	browser.close();
-    return { mp4direct, image, nameInfo }
+    return { video, thumb, title, sinopsis}
 }
 
 film2.get('/', async (req, res) => {
