@@ -1,34 +1,37 @@
-const film = require('express').Router();
+const film2 = require('express').Router();
 const puppeteer = require("puppeteer");
 
-async function getVideo(judul) {
+async function filem2(judul) {
     const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('http://149.56.24.226/');
+    await page.goto('http://cgvindo.fun/');
 
-    await page.type('body > header > nav.top.navbar.navbar-inverse.hidden-xs > div > form > div > div > span.typeahead__query > input', `${judul}`);
-    await page.click('body > header > nav.top.navbar.navbar-inverse.hidden-xs > div > form > div > div > span.typeahead__button > button', { delay: 300 });
-
-    await page.waitForSelector('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2 > a', {delay: 300});
-    let mp4direct = await page.$eval('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2 > a', (element) => {
-        return element.getAttribute("href");
-    });
-    let image = await page.$eval("body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-3.col-sm-2.search-poster > figure > a > img", (element) => {
+    await page.click('#HdTop > div > form > label', { delay: 300 });
+    await page.type('#Tf-Search', `${judul}`);
+    await page.keyboard.press('Enter')
+    await page.waitForSelector('#post-48460 > article > a > div > figure', {delay: 300});
+    let image = await page.$eval("#post-48460 > article > a > div > figure > img", (element) => {
         return element.getAttribute("src");
     });
-	let nameInfo = await page.$eval('body > main > div > section > div:nth-child(2) > div > div > div:nth-child(2) > div > div.col-xs-9.col-sm-10.search-content > h2', el => el.innerText);
+    await page.click('#post-48460 > article > a > div > figure', { delay: 300 });
+       
+    await page.waitForSelector('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > section > ul > li:nth-child(1) > div > a', {delay: 300});
+    let mp4direct = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > section > ul > li:nth-child(1) > div > a', (element) => {
+        return element.getAttribute("href");
+    });
+	let nameInfo = await page.$eval('#Tf-Wp > div.Tf-Wp > div > div.Main.Container > div > main > article > header > div > a:nth-child(1) > h1', el => el.innerText);
 //	let textInfo = await page.$eval('#post-header > a:tittle', el => el.innerText);
 	browser.close();
     return { mp4direct, image, nameInfo }
 }
 
-film.get('/', async (req, res) => {
+film2.get('/', async (req, res) => {
     var judul = req.query.judul;
-    const gets = await getVideo(judul);
+    const gets = await filem2(judul);
     res.json(gets)
 });
 
-module.exports = film;
+module.exports = film2;
