@@ -13,7 +13,7 @@ async function filem2(judul) {
     await page.type('#Tf-Search', `${judul}`);
     await page.keyboard.press('Enter')
     await page.waitForSelector('#post-48460 > article > a > div > figure', {delay: 300});
-    let image = await page.$eval("#post-48460 > article > a > div > figure > img", (element) => {
+    let thumb = await page.$eval("#post-48460 > article > a > div > figure > img", (element) => {
         return element.getAttribute("src");
     });
     await page.click('#post-48460 > article > a > div > figure', { delay: 300 });
