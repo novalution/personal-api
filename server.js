@@ -9,7 +9,7 @@ var instagram = require('./server/routers/IG');
 var twvid = require('./server/routers/twvid');
 var twimg = require('./server/routers/twimg');
 var film = require('./server/routers/film');
-
+var film2 = require('./server/routers/film2');
 var app = express();
 const PORT = process.env.PORT || 80;
 
@@ -36,6 +36,7 @@ app.use('/ig', instagram);
 app.use('/twimg', twimg);
 app.use('/twvid', twvid);
 app.use('/film', film);
+app.use('/film2', film2);
 
 app.listen(PORT, () => {
     console.log(`Server Run on port ${PORT}`)
