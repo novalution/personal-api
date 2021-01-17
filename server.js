@@ -6,7 +6,7 @@ var film = require('./server/routers/film');
 var video = require('./server/routers/video');
 
 var app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 8080;
 
 app.use(morgan('dev'));
 app.use(express.static('client'));
