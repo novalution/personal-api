@@ -26,8 +26,8 @@ async function getVideo(filems) {
   return { video, juduls,sinopsis}
 }
 film.get('/', async (req, res) => {
-    var judul = req.query.judul;
-    const gets = await getVideo(judul);
+    var filems = req.query.filems;
+    const gets = await getVideo(filems);
     res.json(gets)
 });
 module.exports = film;
