@@ -4,9 +4,8 @@ var morgan = require('morgan');
 var eventsRouter = require('./server/routers/events-router');
 var film = require('./server/routers/film');
 var video = require('./server/routers/video');
-
 var app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 
 app.use(morgan('dev'));
 app.use(express.static('client'));
@@ -23,7 +22,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
+app.use('/events', eventsRouter);
 app.use('/film', film);
 app.use('/video', video);
 
