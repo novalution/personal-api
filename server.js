@@ -5,7 +5,7 @@ var eventsRouter = require('./server/routers/events-router');
 var film = require('./server/routers/film');
 var video = require('./server/routers/video');
 var app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 app.use(morgan('dev'));
 app.use(express.static('client'));
