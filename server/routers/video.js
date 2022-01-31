@@ -7,10 +7,10 @@ async function vid(link) {
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
     })
       const page = await browser.newPage();
-      await page.goto('https://id.savefrom.net/7/',{delay:1000})
+      await page.goto('https://id.ssyoutube.com/2/');
       await page.type('#sf_url',`${link}`)
-      await page.click('#sf_submit',{delay:1000})
-      await page.waitForSelector('#sf_result > div > div.result-box.video > div.info-box > div.link-box > div.def-btn-box > a',{delay:15000})
+      await page.click('#sf_submit')
+      await page.waitForSelector('#sf_result > div > div.result-box.video > div.info-box > div.link-box > div.def-btn-box > a')
       let video = await page.$eval('#sf_result > div > div.result-box.video > div.info-box > div.link-box > div.def-btn-box > a', (element) => {
           return element.getAttribute("href");
         });
