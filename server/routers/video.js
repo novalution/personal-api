@@ -11,11 +11,11 @@ async function vid(link) {
       await page.type('#sf_url',`${link}`)
       await page.click('#sf_submit')
       await page.waitForSelector('#sf_result > div > div.result-box.video > div.info-box > div.link-box > div.def-btn-box > a')
-      let video = await page.$eval('#sf_result > div > div.result-box.video > div.info-box > div.link-box > div.def-btn-box > a', (element) => {
+      let videos = await page.$eval('#sf_result > div > div.result-box.video > div.info-box > div.link-box > div.def-btn-box > a', (element) => {
           return element.getAttribute("href");
         });
     browser.close();
-    return{video}
+    return{videos}
 }
 
 
